@@ -1,0 +1,32 @@
+-------------------------------------------------------------------------------
+Test set: com.home.demo.listener.ListenerTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.172 sec <<< FAILURE! - in com.home.demo.listener.ListenerTest
+testListener(com.home.demo.listener.ListenerTest)  Time elapsed: 0.172 sec  <<< ERROR!
+org.activiti.engine.ActivitiException: couldn't instantiate class com.home.demo.listener.ProcessStartExecutionListener
+	at java.net.URLClassLoader.findClass(URLClassLoader.java:381)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:424)
+	at sun.misc.Launcher$AppClassLoader.loadClass(Launcher.java:331)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:357)
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Class.java:348)
+	at org.activiti.engine.impl.util.ReflectUtil.loadClass(ReflectUtil.java:63)
+	at org.activiti.engine.impl.util.ReflectUtil.instantiate(ReflectUtil.java:129)
+	at org.activiti.engine.impl.bpmn.helper.ClassDelegate.instantiateDelegate(ClassDelegate.java:192)
+	at org.activiti.engine.impl.bpmn.helper.ClassDelegate.getExecutionListenerInstance(ClassDelegate.java:78)
+	at org.activiti.engine.impl.bpmn.helper.ClassDelegate.notify(ClassDelegate.java:70)
+	at org.activiti.engine.impl.pvm.runtime.AbstractEventAtomicOperation.execute(AbstractEventAtomicOperation.java:42)
+	at org.activiti.engine.impl.interceptor.CommandContext.performOperation(CommandContext.java:96)
+	at org.activiti.engine.impl.persistence.entity.ExecutionEntity.performOperationSync(ExecutionEntity.java:621)
+	at org.activiti.engine.impl.persistence.entity.ExecutionEntity.performOperation(ExecutionEntity.java:616)
+	at org.activiti.engine.impl.persistence.entity.ExecutionEntity.start(ExecutionEntity.java:368)
+	at org.activiti.engine.impl.cmd.StartProcessInstanceCmd.execute(StartProcessInstanceCmd.java:111)
+	at org.activiti.engine.impl.cmd.StartProcessInstanceCmd.execute(StartProcessInstanceCmd.java:37)
+	at org.activiti.engine.impl.interceptor.CommandInvoker.execute(CommandInvoker.java:24)
+	at org.activiti.engine.impl.interceptor.CommandContextInterceptor.execute(CommandContextInterceptor.java:57)
+	at org.activiti.engine.impl.interceptor.LogInterceptor.execute(LogInterceptor.java:37)
+	at org.activiti.engine.impl.cfg.CommandExecutorImpl.execute(CommandExecutorImpl.java:40)
+	at org.activiti.engine.impl.cfg.CommandExecutorImpl.execute(CommandExecutorImpl.java:35)
+	at org.activiti.engine.impl.RuntimeServiceImpl.startProcessInstanceByKey(RuntimeServiceImpl.java:77)
+	at com.home.demo.listener.ListenerTest.testListener(ListenerTest.java:37)
+
