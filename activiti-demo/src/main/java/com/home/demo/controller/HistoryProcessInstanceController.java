@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.activiti.engine.HistoryService;
 import org.activiti.engine.RepositoryService;
+import org.activiti.engine.RuntimeService;
 import org.activiti.engine.history.HistoricActivityInstance;
 import org.activiti.engine.history.HistoricDetail;
 import org.activiti.engine.history.HistoricProcessInstance;
@@ -20,6 +21,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.home.demo.util.Page;
 import com.home.demo.util.PageUtil;
@@ -38,6 +40,9 @@ public class HistoryProcessInstanceController {
     @Autowired
     RepositoryService repositoryService;
 
+    @Autowired
+    RuntimeService runtimeService;
+
     /**
      * 查询已结束流程实例
      *
@@ -47,6 +52,35 @@ public class HistoryProcessInstanceController {
     @RequestMapping(value = "finished/list")
     public ModelAndView finishedProcessInstanceList(HttpServletRequest request) {
         ModelAndView mav = new ModelAndView("chapter13/finished-process");
+        Page<HistoricProcessInstance> page = new Page<HistoricProcessInstance>(PageUtil.PAGE_SIZE);
+        int[] pageParams = PageUtil.init(page, request);
+        HistoricProcessInstanceQuery historicProcessInstanceQuery = historyService.createHistoricProcessInstanceQuery().finished();
+        List<HistoricProcessInstance> historicProcessInstances = historicProcessInstanceQuery.listPage(pageParams[0], pageParams[1]);
+
+        // 查询流程定义对象
+        Map<String, ProcessDefinition> definitionMap = new HashMap<String, ProcessDefinition>();
+
+        for (HistoricProcessInstance historicProcessInstance : historicProcessInstances) {
+            definitionCache(definitionMap, historicProcessInstance.getProcessDefinitionId());
+        }
+
+        page.setResult(historicProcessInstances);
+        page.setTotalCount(historicProcessInstanceQuery.count());
+        mav.addObject("page", page);
+        mav.addObject("definitions", definitionMap);
+
+        return mav;
+    }
+
+    /**
+     * 查询已结束流程实例
+     *
+     * @param request
+     * @return
+     */
+    @RequestMapping(value = "finished/manager")
+    public ModelAndView finishedProcessInstanceListForManager(HttpServletRequest request) {
+        ModelAndView mav = new ModelAndView("chapter13/finished-process-manager");
         Page<HistoricProcessInstance> page = new Page<HistoricProcessInstance>(PageUtil.PAGE_SIZE);
         int[] pageParams = PageUtil.init(page, request);
         HistoricProcessInstanceQuery historicProcessInstanceQuery = historyService.createHistoricProcessInstanceQuery().finished();
@@ -100,6 +134,20 @@ public class HistoryProcessInstanceController {
         mav.addObject("processDefinition", processDefinition);
 
         return mav;
+    }
+
+    /**
+     * 删除历史流程数据
+     *
+     * @param processInstanceId
+     * @return
+     */
+    @RequestMapping(value = "finished/delete/{processInstanceId}")
+    public String deleteProcessInstance(@PathVariable("processInstanceId") String processInstanceId,
+                                        RedirectAttributes redirectAttributes) {
+        redirectAttributes.addFlashAttribute("message", "ID为" + processInstanceId + "的历史流程已删除！");
+        historyService.deleteHistoricProcessInstance(processInstanceId);
+        return "redirect:/chapter13/history/process/finished/manager";
     }
 
     /**

@@ -1,28 +1,38 @@
 package com.home.demo.controller;
 
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Hashtable;
 import java.util.List;
+import java.util.Map;
 import java.util.zip.ZipInputStream;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.activiti.engine.IdentityService;
+import org.activiti.engine.ManagementService;
 import org.activiti.engine.RepositoryService;
+import org.activiti.engine.identity.Group;
+import org.activiti.engine.identity.User;
 import org.activiti.engine.repository.DeploymentBuilder;
 import org.activiti.engine.repository.ProcessDefinition;
 import org.activiti.engine.repository.ProcessDefinitionQuery;
+import org.activiti.engine.task.IdentityLink;
 import org.apache.commons.io.FilenameUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.home.demo.util.Result;
-import com.home.demo.util.ResultGenerator;
+import com.home.demo.util.Page;
+import com.home.demo.util.PageUtil;
 
 /**
  * 部署流程
@@ -38,31 +48,111 @@ public class DeploymentController {
     @Autowired
     RepositoryService repositoryService;
 
+    @Autowired
+    IdentityService identityService;
+
+    @Autowired
+    ManagementService managementService;
+
     /**
      * 流程定义列表
      */
     @RequestMapping(value = "/process-list")
-    public ModelAndView processList() {
-        // 对应WEB-INF/views/chapter5/process-list.jsp
-        ModelAndView mav = new ModelAndView("chapter5/process-list");
-        
-        List<ProcessDefinition> processDefinitionList = repositoryService.createProcessDefinitionQuery().list();
+    public ModelAndView processList(HttpServletRequest request) {
 
-        mav.addObject("processDefinitionList", processDefinitionList);
+        // 对应WEB-INF/views/chapter5/process-list.jsp
+        String viewName = "chapter5/process-list";
+
+        Page<ProcessDefinition> page = new Page<ProcessDefinition>(PageUtil.PAGE_SIZE);
+        int[] pageParams = PageUtil.init(page, request);
+
+        ModelAndView mav = new ModelAndView(viewName);
+        ProcessDefinitionQuery processDefinitionQuery = repositoryService.createProcessDefinitionQuery();
+
+        List<ProcessDefinition> processDefinitionList = processDefinitionQuery.listPage(pageParams[0], pageParams[1]);
+
+        page.setResult(processDefinitionList);
+        page.setTotalCount(processDefinitionQuery.count());
+        mav.addObject("page", page);
+
+        // 读取所有人员
+        List<User> users = identityService.createUserQuery().list();
+        mav.addObject("users", users);
+
+        // 读取所有组
+        List<Group> groups = identityService.createGroupQuery().list();
+        mav.addObject("groups", groups);
+
+        // 读取每个流程定义的候选属性
+        Map<String, Map<String, List<? extends Object>>> linksMap = setCandidateUserAndGroups(processDefinitionList);
+        mav.addObject("linksMap", linksMap);
 
         return mav;
     }
-    
-//    @RequestMapping(value = "/process-list_json")
-//    @ResponseBody
-//    public ProcessDefinition test_processList() {
-//        // 对应WEB-INF/views/chapter5/process-list.jsp
-//        
-//        ProcessDefinition processDefinition = repositoryService.createProcessDefinitionQuery().singleResult();
-//
-//        return processDefinition;
-//    }
-    
+
+    /**
+     * 读取流程定义的相关候选启动人、组，根据link信息转换并封装为User、Group对象
+     * @param processDefinitionList
+     * @return
+     */
+    private Map<String, Map<String, List<? extends Object>>> setCandidateUserAndGroups(List<ProcessDefinition> processDefinitionList) {
+        Map<String, Map<String, List<? extends Object>>> linksMap = new HashMap<String, Map<String, List<? extends Object>>>();
+        for (ProcessDefinition processDefinition : processDefinitionList) {
+            List<IdentityLink> identityLinks = repositoryService.getIdentityLinksForProcessDefinition(processDefinition.getId());
+
+            Map<String, List<? extends Object>> single = new Hashtable<String, List<? extends Object>>();
+            List<User> linkUsers = new ArrayList<User>();
+            List<Group> linkGroups = new ArrayList<Group>();
+
+            for (IdentityLink link : identityLinks) {
+                if (StringUtils.isNotBlank(link.getUserId())) {
+                    linkUsers.add(identityService.createUserQuery().userId(link.getUserId()).singleResult());
+                } else if (StringUtils.isNotBlank(link.getGroupId())) {
+                    linkGroups.add(identityService.createGroupQuery().groupId(link.getGroupId()).singleResult());
+                }
+            }
+
+            single.put("user", linkUsers);
+            single.put("group", linkGroups);
+
+            linksMap.put(processDefinition.getId(), single);
+
+        }
+        return linksMap;
+    }
+
+    /**
+     * 流程定义列表--过滤激活的流程定义
+     */
+    @RequestMapping(value = "/process-list-view")
+    public ModelAndView processListReadonly(HttpServletRequest request) {
+
+        // 对应WEB-INF/views/chapter5/process-list.jsp
+        String viewName = "chapter5/process-list-view";
+
+        Page<ProcessDefinition> page = new Page<ProcessDefinition>(PageUtil.PAGE_SIZE);
+        int[] pageParams = PageUtil.init(page, request);
+
+        ModelAndView mav = new ModelAndView(viewName);
+//        User user = UserUtil.getUserFromSession(request.getSession());
+//        ProcessDefinitionQuery processDefinitionQuery = repositoryService.createProcessDefinitionQuery().startableByUser(user.getId());
+        ProcessDefinitionQuery processDefinitionQuery = repositoryService.createProcessDefinitionQuery();
+
+        processDefinitionQuery.suspended().active();
+
+        List<ProcessDefinition> processDefinitionList = processDefinitionQuery.listPage(pageParams[0], pageParams[1]);
+
+        page.setResult(processDefinitionList);
+        page.setTotalCount(processDefinitionQuery.count());
+        mav.addObject("page", page);
+
+        // 读取每个流程定义的候选属性
+        Map<String, Map<String, List<? extends Object>>> linksMap = setCandidateUserAndGroups(processDefinitionList);
+        mav.addObject("linksMap", linksMap);
+
+        return mav;
+    }
+
     /**
      * 部署流程资源
      */
@@ -103,7 +193,8 @@ public class DeploymentController {
      * @param resourceName        资源名称
      */
     @RequestMapping(value = "/read-resource")
-    public void readResource(@RequestParam("pdid") String processDefinitionId, @RequestParam("resourceName") String resourceName, HttpServletResponse response)
+    public void readResource(@RequestParam("pdid") String processDefinitionId,
+                             @RequestParam("resourceName") String resourceName, HttpServletResponse response)
             throws Exception {
         ProcessDefinitionQuery pdq = repositoryService.createProcessDefinitionQuery();
         ProcessDefinition pd = pdq.processDefinitionId(processDefinitionId).singleResult();
@@ -113,7 +204,7 @@ public class DeploymentController {
 
         // 输出资源内容到相应对象
         byte[] b = new byte[1024];
-        int len = -1;
+        int len;
         while ((len = resourceAsStream.read(b, 0, 1024)) != -1) {
             response.getOutputStream().write(b, 0, len);
         }

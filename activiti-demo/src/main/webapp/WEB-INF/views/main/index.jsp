@@ -10,7 +10,7 @@
         }
     </script>
     <%@ include file="/common/meta.jsp" %>
-    <title>Activiti Explorer第13章例子</title>
+    <title>Activiti Explorer第14章例子</title>
     <%@ include file="/common/include-base-styles.jsp" %>
     <link rel="stylesheet" type="text/css" href="${ctx }/css/menu.css"/>
     <style type="text/css">
@@ -51,18 +51,27 @@
                         <a data-toggle="dropdown" class="dropdown-toggle" href="#"><i
                                 class="icon-th-large icon-black"></i>运行中<b class="caret"></b></a>
                         <ul class="dropdown-menu">
-                            <li><a href="#" rel="chapter6/task/list"><i class="icon-th-list icon-black"></i>任务列表</a></li>
+                            <li><a href="#" rel="chapter6/task/list"><i class="icon-th-list icon-black"></i>待办任务</a></li>
                             <li><a href="#" rel="chapter13/execution/list"><i class="icon-th-list icon-black"></i>参与的流程</a></li>
                         </ul>
                     </li>
                     <li><a href="#" rel="chapter13/history/process/finished/list"><i class="icon-lock icon-black"></i>已归档</a>
+                    <li><a href="#" rel='chapter5/process-list-view'><i class="icon-th-list icon-black"></i>流程列表</a></li>
                     </li>
                     <li class="dropdown">
                         <a data-toggle="dropdown" class="dropdown-toggle" href="#"><i
                                 class="icon-th-large icon-black"></i>管理<b class="caret"></b></a>
                         <ul class="dropdown-menu">
-                            <li><a href="#" rel='chapter5/process-list'>流程定义</a></li>
-                            <li><a href="#" rel='chapter13/query/task/running'>运行中任务(CustomSql)</a></li>
+                            <li><a href="#" rel='chapter5/process-list'>流程定义管理</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#" rel='chapter14/processinstance/list'>运行中流程</a></li>
+                            <li><a href="#" rel='chapter13/history/process/finished/manager'>已归档流程</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#" rel='chapter14/engine'>引擎属性</a></li>
+                            <li><a href="#" rel='chapter14/database'>引擎数据库</a></li>
+                            <li><a href="#" rel='chapter14/job/list'>作业管理</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#" rel='chapter14/identity/user/list'>用户与组</a></li>
                         </ul>
                     </li>
                 </ul>

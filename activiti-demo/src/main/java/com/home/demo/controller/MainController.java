@@ -11,9 +11,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class MainController {
 
-    @RequestMapping(value = {"/","/main/index"})
+    @RequestMapping(value = {"/"})
+    public String login() {
+        return "forward:/login.jsp";
+    }
+    
+    @RequestMapping(value = {"/main/index"})
     public String index() {
-        return "/main/index";
+    	return "/main/index";
     }
 
     @RequestMapping(value = "/main/welcome")

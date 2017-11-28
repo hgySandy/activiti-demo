@@ -13,7 +13,7 @@
 <body>
 <p class="title text-center text-info">
     已归档流程实例信息
-    <a class="btn" style="float:right;" href="${ctx}/chapter13/history/process/finished/list"><i class="icon-circle-arrow-left"></i>返回列表</a>
+    <a class="btn" style="float:right;" href="javascript:history.back();"><i class="icon-circle-arrow-left"></i>返回列表</a>
 </p>
 <fieldset>
     <legend>流程综合信息-【${processDefinition.name}】-${historicProcessInstance.processInstanceId}</legend>

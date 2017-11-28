@@ -1,8 +1,8 @@
 -------------------------------------------------------------------------------
 Test set: com.home.demo.engine.ProcessEngineConfigurationTest
 -------------------------------------------------------------------------------
-Tests run: 2, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 4.687 sec <<< FAILURE! - in com.home.demo.engine.ProcessEngineConfigurationTest
-specialName(com.home.demo.engine.ProcessEngineConfigurationTest)  Time elapsed: 3.699 sec  <<< ERROR!
+Tests run: 2, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 2.002 sec <<< FAILURE! - in com.home.demo.engine.ProcessEngineConfigurationTest
+specialName(com.home.demo.engine.ProcessEngineConfigurationTest)  Time elapsed: 1.304 sec  <<< ERROR!
 org.activiti.engine.ActivitiException: couldn't check if tables are already present using metadata: 
 ### Error getting a new connection.  Cause: java.sql.SQLException: Error setting driver on UnpooledDataSource. Cause: java.lang.ClassNotFoundException: oracle.jdbc.Driver
 ### Cause: java.sql.SQLException: Error setting driver on UnpooledDataSource. Cause: java.lang.ClassNotFoundException: oracle.jdbc.Driver

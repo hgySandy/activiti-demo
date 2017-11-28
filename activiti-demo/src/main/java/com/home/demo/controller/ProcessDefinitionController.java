@@ -13,9 +13,11 @@ import org.activiti.engine.IdentityService;
 import org.activiti.engine.RepositoryService;
 import org.activiti.engine.form.FormProperty;
 import org.activiti.engine.form.StartFormData;
+import org.activiti.engine.identity.Group;
 import org.activiti.engine.identity.User;
 import org.activiti.engine.repository.ProcessDefinition;
 import org.activiti.engine.runtime.ProcessInstance;
+import org.activiti.engine.task.IdentityLink;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -52,8 +54,42 @@ public class ProcessDefinitionController {
      * 读取启动流程的表单字段
      */
     @RequestMapping(value = "getform/start/{processDefinitionId}")
-    public ModelAndView readStartForm(@PathVariable("processDefinitionId") String processDefinitionId) throws Exception {
-        ProcessDefinition processDefinition = repositoryService.createProcessDefinitionQuery().processDefinitionId(processDefinitionId).singleResult();
+    public ModelAndView readStartForm(@PathVariable("processDefinitionId") String processDefinitionId,
+                                      HttpServletRequest request, RedirectAttributes redirectAttributes) throws Exception {
+        ProcessDefinition processDefinition = repositoryService.createProcessDefinitionQuery()
+                .processDefinitionId(processDefinitionId).singleResult();
+
+        User user = UserUtil.getUserFromSession(request.getSession());
+        List<Group> groupList = (List<Group>) request.getSession().getAttribute("groups");
+
+        // 权限拦截
+        boolean startable = false;
+        List<IdentityLink> identityLinks = repositoryService.getIdentityLinksForProcessDefinition(processDefinition.getId());
+        if (identityLinks == null || identityLinks.isEmpty()) {
+            startable = true;
+        } else {
+            for (IdentityLink identityLink : identityLinks) {
+                if (StringUtils.isNotBlank(identityLink.getUserId()) && identityLink.getUserId().equals(user.getId())) {
+                    startable = true;
+                    break;
+                }
+
+                if (StringUtils.isNotBlank(identityLink.getGroupId())) {
+                    for (Group group : groupList) {
+                        if (group.getName().equals(identityLink.getGroupId())) {
+                            startable = true;
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+
+        if (!startable) {
+            redirectAttributes.addFlashAttribute("error", "您无权启动【" + processDefinition.getName() + "】流程！");
+            return new ModelAndView("redirect:/chapter5/process-list-view");
+        }
+
         boolean hasStartFormKey = processDefinition.hasStartFormKey();
 
         // 根据是否有formkey属性判断使用哪个展示层
@@ -114,7 +150,7 @@ public class ProcessDefinitionController {
         ProcessInstance processInstance = formService.submitStartFormData(pdid, formValues);
         logger.debug("start a processinstance: {}", processInstance);
         redirectAttributes.addFlashAttribute("message", "流程已启动，实例ID：" + processInstance.getId());
-        return "redirect:/chapter5/process-list";
+        return "redirect:/chapter5/process-list-view";
     }
 
 }

@@ -5,7 +5,6 @@ import java.util.Properties;
 
 import javax.sql.DataSource;
 
-import org.hibernate.SessionFactory;
 import org.hibernate.cfg.ImprovedNamingStrategy;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
@@ -13,10 +12,9 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
-import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.jdbc.datasource.SimpleDriverDataSource;
+import org.springframework.orm.hibernate4.HibernateTransactionManager;
 import org.springframework.orm.hibernate4.LocalSessionFactoryBean;
-//配置类千万不要忘了这个注解
 @Configuration
 //扫描 Mapper 接口并容器管理
 //@MapperScan(basePackages = DBConfig.PACKAGE, sqlSessionFactoryRef = "sessionFactory")
@@ -24,7 +22,7 @@ public class DBConfig {
 
 	// 精确到 spring 目录，以便跟其他数据源隔离
 //	static final String PACKAGE = "com.home.demo.dao";
-//	static final String MAPPER_LOCATION = "classpath:mybatis/*.xml";
+	static final String MAPPER_LOCATION = "classpath:com/home/demo/mapper/*.xml";
 	
 	@Value("${jdbc.url}")
 	private String url;
@@ -58,9 +56,10 @@ public class DBConfig {
 		final LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
 		sessionFactory.setDataSource(dataSource);
 		sessionFactory.setNamingStrategy(new ImprovedNamingStrategy());
-		//sessionFactory.setMapperLocations(applicationContext.getResources(DBConfig.MAPPER_LOCATION));
+		sessionFactory.setMappingLocations(applicationContext.getResources(DBConfig.MAPPER_LOCATION));
 		Properties hibernateProperties = new Properties();	
-		hibernateProperties.setProperty("hibernate.dialect", "org.hibernate.dialect.H2Dialect");
+		//hibernateProperties.setProperty("hibernate.dialect", "org.hibernate.dialect.H2Dialect");
+		hibernateProperties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL5InnoDBDialect");
 		hibernateProperties.setProperty("hibernate.show_sql", "false");
 		hibernateProperties.setProperty("hibernate.format_sql", "true");
 		hibernateProperties.setProperty("hibernate.hbm2ddl.auto", "update");
@@ -70,11 +69,19 @@ public class DBConfig {
 		return sessionFactory;
 	}
 	
+//	@Bean(name = "transactionManager")
+//	@Primary
+//	public DataSourceTransactionManager transactionManager(@Qualifier("dataSource") DataSource dataSource) {
+//		DataSourceTransactionManager transactionManager = new DataSourceTransactionManager();
+//		transactionManager.setDataSource(dataSource);
+//		return transactionManager;
+//	}
+	
 	@Bean(name = "transactionManager")
 	@Primary
-	public DataSourceTransactionManager transactionManager(@Qualifier("dataSource") DataSource dataSource) {
-		DataSourceTransactionManager transactionManager = new DataSourceTransactionManager();
-		transactionManager.setDataSource(dataSource);
+	public HibernateTransactionManager hibernateTransactionManager(@Qualifier("sessionFactory") LocalSessionFactoryBean sessionFactory) {
+		HibernateTransactionManager transactionManager = new HibernateTransactionManager();
+		transactionManager.setSessionFactory(sessionFactory.getObject());
 		return transactionManager;
 	}
     

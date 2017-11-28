@@ -1,8 +1,8 @@
 -------------------------------------------------------------------------------
 Test set: com.home.demo.main.LeaveCoutersignTest
 -------------------------------------------------------------------------------
-Tests run: 2, Failures: 0, Errors: 2, Skipped: 0, Time elapsed: 3.076 sec <<< FAILURE! - in com.home.demo.main.LeaveCoutersignTest
-testAllApproved(com.home.demo.main.LeaveCoutersignTest)  Time elapsed: 2.038 sec  <<< ERROR!
+Tests run: 2, Failures: 0, Errors: 2, Skipped: 0, Time elapsed: 1.332 sec <<< FAILURE! - in com.home.demo.main.LeaveCoutersignTest
+testAllApproved(com.home.demo.main.LeaveCoutersignTest)  Time elapsed: 0.882 sec  <<< ERROR!
 org.activiti.engine.ActivitiException: Exception while invoking TaskListener: Unknown property used in expression: ${leaveCounterSignCompleteListener}
 	at org.activiti.engine.impl.juel.AstIdentifier.eval(AstIdentifier.java:83)
 	at org.activiti.engine.impl.juel.AstEval.eval(AstEval.java:50)
@@ -32,7 +32,7 @@ org.activiti.engine.ActivitiException: Exception while invoking TaskListener: Un
 	at org.activiti.engine.impl.TaskServiceImpl.complete(TaskServiceImpl.java:179)
 	at com.home.demo.main.LeaveCoutersignTest.testAllApproved(LeaveCoutersignTest.java:38)
 
-testNotAllApproved(com.home.demo.main.LeaveCoutersignTest)  Time elapsed: 1.038 sec  <<< ERROR!
+testNotAllApproved(com.home.demo.main.LeaveCoutersignTest)  Time elapsed: 0.449 sec  <<< ERROR!
 org.activiti.engine.ActivitiException: Exception while invoking TaskListener: Unknown property used in expression: ${leaveCounterSignCompleteListener}
 	at org.activiti.engine.impl.juel.AstIdentifier.eval(AstIdentifier.java:83)
 	at org.activiti.engine.impl.juel.AstEval.eval(AstEval.java:50)

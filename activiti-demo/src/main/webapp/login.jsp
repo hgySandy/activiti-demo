@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>《Activiti实战》示例第13章-登录系统</title>
+	<title>《Activiti实战》示例第14章-登录系统</title>
 	<%@ include file="/common/global.jsp"%>
 	<%@ include file="/common/meta.jsp" %>
     <%@ include file="/common/include-base-styles.jsp" %>
@@ -17,7 +17,7 @@
 		<h2 id="error" class="alert alert-error">未登录或超时！！！</h2>
 	</c:if>
 	<div style="width: 600px">
-		<h2>第13章—《流程查询与跟踪》配套示例</h2>
+		<h2>第14章—《管理员特性》配套示例</h2>
 		<form action="${ctx }/user/logon" method="get">
 			<table>
 				<tr>

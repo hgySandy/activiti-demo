@@ -15,6 +15,7 @@
     <script type="text/javascript" src="${ctx }/js/common/bootstrap-datepicker.js"></script>
 </head>
 <body>
+<div class='page-title ui-corner-all'>已归档流程实例</div>
 <table width="100%" class="table table-bordered table-hover table-condensed">
     <thead>
     <tr>
@@ -25,6 +26,7 @@
         <th>流程启动人</th>
         <th>结束时间</th>
         <th>父流程ID</th>
+        <th>结束原因</th>
     </tr>
     </thead>
     <tbody>
@@ -37,6 +39,7 @@
             <td>${hp.startUserId}</td>
             <td><fmt:formatDate value="${hp.endTime}" pattern="yyyy-MM-dd hh:mm:ss"/></td>
             <td><a href="${ctx}/chapter13/history/process/finished/view/${hp.superProcessInstanceId}">${hp.superProcessInstanceId}</a></td>
+            <td>${hp.deleteReason}</td>
         </tr>
     </c:forEach>
     </tbody>

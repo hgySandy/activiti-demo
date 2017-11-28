@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.home.demo.listener.ListenerTest" time="0.172" tests="1" errors="1" skipped="0" failures="0">
+<testsuite name="com.home.demo.listener.ListenerTest" time="0.143" tests="1" errors="1" skipped="0" failures="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib"/>
@@ -25,7 +25,7 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="os.name" value="Mac OS X"/>
-    <property name="classworlds.conf" value="/Users/huanggangyu/eclipse-workspace/.metadata/.plugins/org.eclipse.m2e.launching/launches/m2conf7494272657220325874.tmp"/>
+    <property name="classworlds.conf" value="/Users/huanggangyu/eclipse-workspace/.metadata/.plugins/org.eclipse.m2e.launching/launches/m2conf5667045441837054571.tmp"/>
     <property name="sun.jnu.encoding" value="UTF-8"/>
     <property name="java.library.path" value="/Users/huanggangyu/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:."/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
@@ -58,7 +58,7 @@
     <property name="sun.io.unicode.encoding" value="UnicodeBig"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase name="testListener" classname="com.home.demo.listener.ListenerTest" time="0.172">
+  <testcase name="testListener" classname="com.home.demo.listener.ListenerTest" time="0.143">
     <error message="couldn&apos;t instantiate class com.home.demo.listener.ProcessStartExecutionListener" type="org.activiti.engine.ActivitiException">org.activiti.engine.ActivitiException: couldn't instantiate class com.home.demo.listener.ProcessStartExecutionListener
 	at java.net.URLClassLoader.findClass(URLClassLoader.java:381)
 	at java.lang.ClassLoader.loadClass(ClassLoader.java:424)
@@ -87,79 +87,79 @@
 	at com.home.demo.listener.ListenerTest.testListener(ListenerTest.java:37)
 </error>
     <system-out><![CDATA[++++++++ 开始测试 ++++++++
-15:06:41.558 [main] DEBUG org.activiti.engine.impl.test.TestHelper - annotation @Deployment creates deployment for ListenerTest.testListener
-15:06:41.559 [main] DEBUG org.activiti.engine.impl.interceptor.LogInterceptor - 
+16:46:13.038 [main] DEBUG org.activiti.engine.impl.test.TestHelper - annotation @Deployment creates deployment for ListenerTest.testListener
+16:46:13.039 [main] DEBUG org.activiti.engine.impl.interceptor.LogInterceptor - 
 
-15:06:41.559 [main] DEBUG org.activiti.engine.impl.interceptor.LogInterceptor - --- starting DeployCmd --------------------------------------------------------
-15:06:41.559 [main] DEBUG org.activiti.engine.impl.bpmn.deployer.BpmnDeployer - Processing deployment ListenerTest.testListener
-15:06:41.559 [main] INFO org.activiti.engine.impl.bpmn.deployer.BpmnDeployer - Processing resource diagrams/chapter7/listener/listener.bpmn
-15:06:41.597 [main] DEBUG org.activiti.engine.impl.bpmn.parser.handler.ProcessParseHandler - Parsing process listener
-15:06:41.598 [main] DEBUG org.activiti.engine.impl.bpmn.parser.handler.AbstractBpmnParseHandler - Parsing activity usertask1
-15:06:41.603 [main] DEBUG org.activiti.engine.impl.bpmn.parser.handler.AbstractBpmnParseHandler - Parsing activity startevent1
-15:06:41.603 [main] DEBUG org.activiti.engine.impl.bpmn.parser.handler.AbstractBpmnParseHandler - Parsing activity endevent1
-15:06:41.677 [main] DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Opening JDBC Connection
-15:06:41.677 [main] DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource - Checked out connection 1055601039 from pool.
-15:06:41.677 [main] DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Setting autocommit to false on JDBC Connection [conn2: url=jdbc:h2:mem:activiti user=SA]
-15:06:41.677 [main] DEBUG org.activiti.engine.impl.persistence.entity.ProcessDefinitionEntity.selectLatestProcessDefinitionByKey - ==>  Preparing: select * from ACT_RE_PROCDEF where KEY_ = ? and (TENANT_ID_ = '' or TENANT_ID_ is null) and VERSION_ = (select max(VERSION_) from ACT_RE_PROCDEF where KEY_ = ? and (TENANT_ID_ = '' or TENANT_ID_ is null)) 
-15:06:41.679 [main] DEBUG org.activiti.engine.impl.persistence.entity.ProcessDefinitionEntity.selectLatestProcessDefinitionByKey - ==> Parameters: listener(String), listener(String)
-15:06:41.681 [main] DEBUG org.activiti.engine.impl.persistence.entity.ProcessDefinitionEntity.selectLatestProcessDefinitionByKey - <==      Total: 0
-15:06:41.681 [main] DEBUG org.activiti.engine.impl.persistence.entity.JobEntity.selectJobsByConfiguration - ==>  Preparing: select * from ACT_RU_JOB where HANDLER_TYPE_ = ? and HANDLER_CFG_ = ? 
-15:06:41.682 [main] DEBUG org.activiti.engine.impl.persistence.entity.JobEntity.selectJobsByConfiguration - ==> Parameters: timer-start-event(String), listener(String)
-15:06:41.683 [main] DEBUG org.activiti.engine.impl.persistence.entity.JobEntity.selectJobsByConfiguration - <==      Total: 0
-15:06:41.683 [main] DEBUG org.activiti.engine.impl.db.DbSqlSession - flush summary: 4 insert, 0 update, 0 delete.
-15:06:41.684 [main] DEBUG org.activiti.engine.impl.db.DbSqlSession -   insert DeploymentEntity[id=28, name=ListenerTest.testListener]
-15:06:41.684 [main] DEBUG org.activiti.engine.impl.db.DbSqlSession -   insert ResourceEntity[id=29, name=diagrams/chapter7/listener/listener.bpmn]
-15:06:41.684 [main] DEBUG org.activiti.engine.impl.db.DbSqlSession -   insert ResourceEntity[id=30, name=diagrams/chapter7/listener/listener.listener.png]
-15:06:41.684 [main] DEBUG org.activiti.engine.impl.db.DbSqlSession -   insert ProcessDefinitionEntity[listener:1:31]
-15:06:41.684 [main] DEBUG org.activiti.engine.impl.db.DbSqlSession - now executing flush...
-15:06:41.684 [main] DEBUG org.activiti.engine.impl.db.DbSqlSession - inserting: DeploymentEntity[id=28, name=ListenerTest.testListener]
-15:06:41.684 [main] DEBUG org.activiti.engine.impl.persistence.entity.DeploymentEntity.insertDeployment - ==>  Preparing: insert into ACT_RE_DEPLOYMENT(ID_, NAME_, CATEGORY_, TENANT_ID_, DEPLOY_TIME_) values(?, ?, ?, ?, ?) 
-15:06:41.685 [main] DEBUG org.activiti.engine.impl.persistence.entity.DeploymentEntity.insertDeployment - ==> Parameters: 28(String), ListenerTest.testListener(String), null, (String), 2017-11-27 15:06:41.559(Timestamp)
-15:06:41.685 [main] DEBUG org.activiti.engine.impl.persistence.entity.DeploymentEntity.insertDeployment - <==    Updates: 1
-15:06:41.685 [main] DEBUG org.activiti.engine.impl.db.DbSqlSession - inserting: ResourceEntity[id=29, name=diagrams/chapter7/listener/listener.bpmn]
-15:06:41.685 [main] DEBUG org.activiti.engine.impl.persistence.entity.ResourceEntity.insertResource - ==>  Preparing: insert into ACT_GE_BYTEARRAY(ID_, REV_, NAME_, BYTES_, DEPLOYMENT_ID_, GENERATED_) values (?, 1, ?, ?, ?, ?) 
-15:06:41.685 [main] DEBUG org.activiti.engine.impl.persistence.entity.ResourceEntity.insertResource - ==> Parameters: 29(String), diagrams/chapter7/listener/listener.bpmn(String), java.io.ByteArrayInputStream@6ef81f31(ByteArrayInputStream), 28(String), false(Boolean)
-15:06:41.686 [main] DEBUG org.activiti.engine.impl.persistence.entity.ResourceEntity.insertResource - <==    Updates: 1
-15:06:41.686 [main] DEBUG org.activiti.engine.impl.db.DbSqlSession - inserting: ResourceEntity[id=30, name=diagrams/chapter7/listener/listener.listener.png]
-15:06:41.686 [main] DEBUG org.activiti.engine.impl.persistence.entity.ResourceEntity.insertResource - ==>  Preparing: insert into ACT_GE_BYTEARRAY(ID_, REV_, NAME_, BYTES_, DEPLOYMENT_ID_, GENERATED_) values (?, 1, ?, ?, ?, ?) 
-15:06:41.686 [main] DEBUG org.activiti.engine.impl.persistence.entity.ResourceEntity.insertResource - ==> Parameters: 30(String), diagrams/chapter7/listener/listener.listener.png(String), java.io.ByteArrayInputStream@33abde31(ByteArrayInputStream), 28(String), true(Boolean)
-15:06:41.688 [main] DEBUG org.activiti.engine.impl.persistence.entity.ResourceEntity.insertResource - <==    Updates: 1
-15:06:41.688 [main] DEBUG org.activiti.engine.impl.db.DbSqlSession - inserting: ProcessDefinitionEntity[listener:1:31]
-15:06:41.688 [main] DEBUG org.activiti.engine.impl.persistence.entity.ProcessDefinitionEntity.insertProcessDefinition - ==>  Preparing: insert into ACT_RE_PROCDEF(ID_, REV_, CATEGORY_, NAME_, KEY_, VERSION_, DEPLOYMENT_ID_, RESOURCE_NAME_, DGRM_RESOURCE_NAME_, DESCRIPTION_, HAS_START_FORM_KEY_, SUSPENSION_STATE_, TENANT_ID_) values (?, 1, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) 
-15:06:41.689 [main] DEBUG org.activiti.engine.impl.persistence.entity.ProcessDefinitionEntity.insertProcessDefinition - ==> Parameters: listener:1:31(String), http://www.activiti.org/test(String), listener(String), listener(String), 1(Integer), 28(String), diagrams/chapter7/listener/listener.bpmn(String), diagrams/chapter7/listener/listener.listener.png(String), null, false(Boolean), 1(Integer), (String)
-15:06:41.689 [main] DEBUG org.activiti.engine.impl.persistence.entity.ProcessDefinitionEntity.insertProcessDefinition - <==    Updates: 1
-15:06:41.689 [main] DEBUG org.activiti.engine.impl.cfg.standalone.StandaloneMybatisTransactionContext - firing event committing...
-15:06:41.689 [main] DEBUG org.activiti.engine.impl.cfg.standalone.StandaloneMybatisTransactionContext - committing the ibatis sql session...
-15:06:41.689 [main] DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Committing JDBC Connection [conn2: url=jdbc:h2:mem:activiti user=SA]
-15:06:41.689 [main] DEBUG org.activiti.engine.impl.cfg.standalone.StandaloneMybatisTransactionContext - firing event committed...
-15:06:41.690 [main] DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Resetting autocommit to true on JDBC Connection [conn2: url=jdbc:h2:mem:activiti user=SA]
-15:06:41.690 [main] DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Closing JDBC Connection [conn2: url=jdbc:h2:mem:activiti user=SA]
-15:06:41.690 [main] DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource - Returned connection 1055601039 to pool.
-15:06:41.690 [main] DEBUG org.activiti.engine.impl.interceptor.LogInterceptor - --- DeployCmd finished --------------------------------------------------------
-15:06:41.690 [main] DEBUG org.activiti.engine.impl.interceptor.LogInterceptor - 
+16:46:13.039 [main] DEBUG org.activiti.engine.impl.interceptor.LogInterceptor - --- starting DeployCmd --------------------------------------------------------
+16:46:13.039 [main] DEBUG org.activiti.engine.impl.bpmn.deployer.BpmnDeployer - Processing deployment ListenerTest.testListener
+16:46:13.039 [main] INFO org.activiti.engine.impl.bpmn.deployer.BpmnDeployer - Processing resource diagrams/chapter7/listener/listener.bpmn
+16:46:13.098 [main] DEBUG org.activiti.engine.impl.bpmn.parser.handler.ProcessParseHandler - Parsing process listener
+16:46:13.098 [main] DEBUG org.activiti.engine.impl.bpmn.parser.handler.AbstractBpmnParseHandler - Parsing activity usertask1
+16:46:13.100 [main] DEBUG org.activiti.engine.impl.bpmn.parser.handler.AbstractBpmnParseHandler - Parsing activity startevent1
+16:46:13.100 [main] DEBUG org.activiti.engine.impl.bpmn.parser.handler.AbstractBpmnParseHandler - Parsing activity endevent1
+16:46:13.147 [main] DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Opening JDBC Connection
+16:46:13.147 [main] DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource - Checked out connection 1974622245 from pool.
+16:46:13.147 [main] DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Setting autocommit to false on JDBC Connection [conn2: url=jdbc:h2:mem:activiti user=SA]
+16:46:13.148 [main] DEBUG org.activiti.engine.impl.persistence.entity.ProcessDefinitionEntity.selectLatestProcessDefinitionByKey - ==>  Preparing: select * from ACT_RE_PROCDEF where KEY_ = ? and (TENANT_ID_ = '' or TENANT_ID_ is null) and VERSION_ = (select max(VERSION_) from ACT_RE_PROCDEF where KEY_ = ? and (TENANT_ID_ = '' or TENANT_ID_ is null)) 
+16:46:13.148 [main] DEBUG org.activiti.engine.impl.persistence.entity.ProcessDefinitionEntity.selectLatestProcessDefinitionByKey - ==> Parameters: listener(String), listener(String)
+16:46:13.148 [main] DEBUG org.activiti.engine.impl.persistence.entity.ProcessDefinitionEntity.selectLatestProcessDefinitionByKey - <==      Total: 0
+16:46:13.148 [main] DEBUG org.activiti.engine.impl.persistence.entity.JobEntity.selectJobsByConfiguration - ==>  Preparing: select * from ACT_RU_JOB where HANDLER_TYPE_ = ? and HANDLER_CFG_ = ? 
+16:46:13.149 [main] DEBUG org.activiti.engine.impl.persistence.entity.JobEntity.selectJobsByConfiguration - ==> Parameters: timer-start-event(String), listener(String)
+16:46:13.149 [main] DEBUG org.activiti.engine.impl.persistence.entity.JobEntity.selectJobsByConfiguration - <==      Total: 0
+16:46:13.149 [main] DEBUG org.activiti.engine.impl.db.DbSqlSession - flush summary: 4 insert, 0 update, 0 delete.
+16:46:13.149 [main] DEBUG org.activiti.engine.impl.db.DbSqlSession -   insert DeploymentEntity[id=28, name=ListenerTest.testListener]
+16:46:13.149 [main] DEBUG org.activiti.engine.impl.db.DbSqlSession -   insert ResourceEntity[id=29, name=diagrams/chapter7/listener/listener.bpmn]
+16:46:13.149 [main] DEBUG org.activiti.engine.impl.db.DbSqlSession -   insert ResourceEntity[id=30, name=diagrams/chapter7/listener/listener.listener.png]
+16:46:13.149 [main] DEBUG org.activiti.engine.impl.db.DbSqlSession -   insert ProcessDefinitionEntity[listener:1:31]
+16:46:13.149 [main] DEBUG org.activiti.engine.impl.db.DbSqlSession - now executing flush...
+16:46:13.149 [main] DEBUG org.activiti.engine.impl.db.DbSqlSession - inserting: DeploymentEntity[id=28, name=ListenerTest.testListener]
+16:46:13.149 [main] DEBUG org.activiti.engine.impl.persistence.entity.DeploymentEntity.insertDeployment - ==>  Preparing: insert into ACT_RE_DEPLOYMENT(ID_, NAME_, CATEGORY_, TENANT_ID_, DEPLOY_TIME_) values(?, ?, ?, ?, ?) 
+16:46:13.149 [main] DEBUG org.activiti.engine.impl.persistence.entity.DeploymentEntity.insertDeployment - ==> Parameters: 28(String), ListenerTest.testListener(String), null, (String), 2017-11-28 16:46:13.039(Timestamp)
+16:46:13.150 [main] DEBUG org.activiti.engine.impl.persistence.entity.DeploymentEntity.insertDeployment - <==    Updates: 1
+16:46:13.150 [main] DEBUG org.activiti.engine.impl.db.DbSqlSession - inserting: ResourceEntity[id=29, name=diagrams/chapter7/listener/listener.bpmn]
+16:46:13.150 [main] DEBUG org.activiti.engine.impl.persistence.entity.ResourceEntity.insertResource - ==>  Preparing: insert into ACT_GE_BYTEARRAY(ID_, REV_, NAME_, BYTES_, DEPLOYMENT_ID_, GENERATED_) values (?, 1, ?, ?, ?, ?) 
+16:46:13.150 [main] DEBUG org.activiti.engine.impl.persistence.entity.ResourceEntity.insertResource - ==> Parameters: 29(String), diagrams/chapter7/listener/listener.bpmn(String), java.io.ByteArrayInputStream@7a18e8d(ByteArrayInputStream), 28(String), false(Boolean)
+16:46:13.151 [main] DEBUG org.activiti.engine.impl.persistence.entity.ResourceEntity.insertResource - <==    Updates: 1
+16:46:13.151 [main] DEBUG org.activiti.engine.impl.db.DbSqlSession - inserting: ResourceEntity[id=30, name=diagrams/chapter7/listener/listener.listener.png]
+16:46:13.151 [main] DEBUG org.activiti.engine.impl.persistence.entity.ResourceEntity.insertResource - ==>  Preparing: insert into ACT_GE_BYTEARRAY(ID_, REV_, NAME_, BYTES_, DEPLOYMENT_ID_, GENERATED_) values (?, 1, ?, ?, ?, ?) 
+16:46:13.152 [main] DEBUG org.activiti.engine.impl.persistence.entity.ResourceEntity.insertResource - ==> Parameters: 30(String), diagrams/chapter7/listener/listener.listener.png(String), java.io.ByteArrayInputStream@5560bcdf(ByteArrayInputStream), 28(String), true(Boolean)
+16:46:13.152 [main] DEBUG org.activiti.engine.impl.persistence.entity.ResourceEntity.insertResource - <==    Updates: 1
+16:46:13.152 [main] DEBUG org.activiti.engine.impl.db.DbSqlSession - inserting: ProcessDefinitionEntity[listener:1:31]
+16:46:13.152 [main] DEBUG org.activiti.engine.impl.persistence.entity.ProcessDefinitionEntity.insertProcessDefinition - ==>  Preparing: insert into ACT_RE_PROCDEF(ID_, REV_, CATEGORY_, NAME_, KEY_, VERSION_, DEPLOYMENT_ID_, RESOURCE_NAME_, DGRM_RESOURCE_NAME_, DESCRIPTION_, HAS_START_FORM_KEY_, SUSPENSION_STATE_, TENANT_ID_) values (?, 1, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) 
+16:46:13.153 [main] DEBUG org.activiti.engine.impl.persistence.entity.ProcessDefinitionEntity.insertProcessDefinition - ==> Parameters: listener:1:31(String), http://www.activiti.org/test(String), listener(String), listener(String), 1(Integer), 28(String), diagrams/chapter7/listener/listener.bpmn(String), diagrams/chapter7/listener/listener.listener.png(String), null, false(Boolean), 1(Integer), (String)
+16:46:13.153 [main] DEBUG org.activiti.engine.impl.persistence.entity.ProcessDefinitionEntity.insertProcessDefinition - <==    Updates: 1
+16:46:13.153 [main] DEBUG org.activiti.engine.impl.cfg.standalone.StandaloneMybatisTransactionContext - firing event committing...
+16:46:13.153 [main] DEBUG org.activiti.engine.impl.cfg.standalone.StandaloneMybatisTransactionContext - committing the ibatis sql session...
+16:46:13.153 [main] DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Committing JDBC Connection [conn2: url=jdbc:h2:mem:activiti user=SA]
+16:46:13.153 [main] DEBUG org.activiti.engine.impl.cfg.standalone.StandaloneMybatisTransactionContext - firing event committed...
+16:46:13.153 [main] DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Resetting autocommit to true on JDBC Connection [conn2: url=jdbc:h2:mem:activiti user=SA]
+16:46:13.153 [main] DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Closing JDBC Connection [conn2: url=jdbc:h2:mem:activiti user=SA]
+16:46:13.153 [main] DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource - Returned connection 1974622245 to pool.
+16:46:13.153 [main] DEBUG org.activiti.engine.impl.interceptor.LogInterceptor - --- DeployCmd finished --------------------------------------------------------
+16:46:13.153 [main] DEBUG org.activiti.engine.impl.interceptor.LogInterceptor - 
 
-15:06:41.706 [main] DEBUG org.activiti.engine.impl.interceptor.LogInterceptor - 
+16:46:13.154 [main] DEBUG org.activiti.engine.impl.interceptor.LogInterceptor - 
 
-15:06:41.706 [main] DEBUG org.activiti.engine.impl.interceptor.LogInterceptor - --- starting StartProcessInstanceCmd --------------------------------------------------------
-15:06:41.706 [main] DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Opening JDBC Connection
-15:06:41.706 [main] DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource - Checked out connection 1055601039 from pool.
-15:06:41.706 [main] DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Setting autocommit to false on JDBC Connection [conn2: url=jdbc:h2:mem:activiti user=SA]
-15:06:41.706 [main] DEBUG org.activiti.engine.impl.persistence.entity.ProcessDefinitionEntity.selectLatestProcessDefinitionByKey - ==>  Preparing: select * from ACT_RE_PROCDEF where KEY_ = ? and (TENANT_ID_ = '' or TENANT_ID_ is null) and VERSION_ = (select max(VERSION_) from ACT_RE_PROCDEF where KEY_ = ? and (TENANT_ID_ = '' or TENANT_ID_ is null)) 
-15:06:41.706 [main] DEBUG org.activiti.engine.impl.persistence.entity.ProcessDefinitionEntity.selectLatestProcessDefinitionByKey - ==> Parameters: listener(String), listener(String)
-15:06:41.707 [main] DEBUG org.activiti.engine.impl.persistence.entity.ProcessDefinitionEntity.selectLatestProcessDefinitionByKey - <==      Total: 1
-15:06:41.707 [main] DEBUG org.activiti.engine.impl.persistence.entity.ExecutionEntity - initializing ProcessInstance[32]
-15:06:41.708 [main] DEBUG org.activiti.engine.impl.persistence.entity.IdentityLinkEntity.selectIdentityLinksByProcessInstance - ==>  Preparing: select * from ACT_RU_IDENTITYLINK where PROC_INST_ID_ = ? 
-15:06:41.708 [main] DEBUG org.activiti.engine.impl.persistence.entity.IdentityLinkEntity.selectIdentityLinksByProcessInstance - ==> Parameters: 32(String)
-15:06:41.708 [main] DEBUG org.activiti.engine.impl.persistence.entity.IdentityLinkEntity.selectIdentityLinksByProcessInstance - <==      Total: 0
-15:06:41.709 [main] DEBUG org.activiti.engine.impl.history.DefaultHistoryManager - Current history level: FULL, level required: AUDIT
-15:06:41.709 [main] DEBUG org.activiti.engine.impl.history.DefaultHistoryManager - Current history level: FULL, level required: ACTIVITY
-15:06:41.710 [main] DEBUG org.activiti.engine.impl.history.DefaultHistoryManager - Current history level: FULL, level required: ACTIVITY
-15:06:41.710 [main] DEBUG org.activiti.engine.impl.history.DefaultHistoryManager - Current history level: FULL, level required: FULL
-15:06:41.711 [main] DEBUG org.activiti.engine.impl.history.DefaultHistoryManager - Current history level: FULL, level required: ACTIVITY
-15:06:41.711 [main] DEBUG org.activiti.engine.impl.history.DefaultHistoryManager - Current history level: FULL, level required: FULL
-15:06:41.711 [main] DEBUG org.activiti.engine.impl.history.DefaultHistoryManager - Current history level: FULL, level required: ACTIVITY
-15:06:41.711 [main] DEBUG org.activiti.engine.impl.history.DefaultHistoryManager - Current history level: FULL, level required: FULL
-15:06:41.713 [main] DEBUG org.activiti.engine.impl.interceptor.CommandContext - Error while closing command context
+16:46:13.154 [main] DEBUG org.activiti.engine.impl.interceptor.LogInterceptor - --- starting StartProcessInstanceCmd --------------------------------------------------------
+16:46:13.154 [main] DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Opening JDBC Connection
+16:46:13.154 [main] DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource - Checked out connection 1974622245 from pool.
+16:46:13.154 [main] DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Setting autocommit to false on JDBC Connection [conn2: url=jdbc:h2:mem:activiti user=SA]
+16:46:13.154 [main] DEBUG org.activiti.engine.impl.persistence.entity.ProcessDefinitionEntity.selectLatestProcessDefinitionByKey - ==>  Preparing: select * from ACT_RE_PROCDEF where KEY_ = ? and (TENANT_ID_ = '' or TENANT_ID_ is null) and VERSION_ = (select max(VERSION_) from ACT_RE_PROCDEF where KEY_ = ? and (TENANT_ID_ = '' or TENANT_ID_ is null)) 
+16:46:13.154 [main] DEBUG org.activiti.engine.impl.persistence.entity.ProcessDefinitionEntity.selectLatestProcessDefinitionByKey - ==> Parameters: listener(String), listener(String)
+16:46:13.155 [main] DEBUG org.activiti.engine.impl.persistence.entity.ProcessDefinitionEntity.selectLatestProcessDefinitionByKey - <==      Total: 1
+16:46:13.155 [main] DEBUG org.activiti.engine.impl.persistence.entity.ExecutionEntity - initializing ProcessInstance[32]
+16:46:13.155 [main] DEBUG org.activiti.engine.impl.persistence.entity.IdentityLinkEntity.selectIdentityLinksByProcessInstance - ==>  Preparing: select * from ACT_RU_IDENTITYLINK where PROC_INST_ID_ = ? 
+16:46:13.155 [main] DEBUG org.activiti.engine.impl.persistence.entity.IdentityLinkEntity.selectIdentityLinksByProcessInstance - ==> Parameters: 32(String)
+16:46:13.156 [main] DEBUG org.activiti.engine.impl.persistence.entity.IdentityLinkEntity.selectIdentityLinksByProcessInstance - <==      Total: 0
+16:46:13.156 [main] DEBUG org.activiti.engine.impl.history.DefaultHistoryManager - Current history level: FULL, level required: AUDIT
+16:46:13.156 [main] DEBUG org.activiti.engine.impl.history.DefaultHistoryManager - Current history level: FULL, level required: ACTIVITY
+16:46:13.157 [main] DEBUG org.activiti.engine.impl.history.DefaultHistoryManager - Current history level: FULL, level required: ACTIVITY
+16:46:13.157 [main] DEBUG org.activiti.engine.impl.history.DefaultHistoryManager - Current history level: FULL, level required: FULL
+16:46:13.158 [main] DEBUG org.activiti.engine.impl.history.DefaultHistoryManager - Current history level: FULL, level required: ACTIVITY
+16:46:13.158 [main] DEBUG org.activiti.engine.impl.history.DefaultHistoryManager - Current history level: FULL, level required: FULL
+16:46:13.158 [main] DEBUG org.activiti.engine.impl.history.DefaultHistoryManager - Current history level: FULL, level required: ACTIVITY
+16:46:13.158 [main] DEBUG org.activiti.engine.impl.history.DefaultHistoryManager - Current history level: FULL, level required: FULL
+16:46:13.159 [main] DEBUG org.activiti.engine.impl.interceptor.CommandContext - Error while closing command context
 org.activiti.engine.ActivitiException: couldn't instantiate class com.home.demo.listener.ProcessStartExecutionListener
 	at org.activiti.engine.impl.util.ReflectUtil.instantiate(ReflectUtil.java:132)
 	at org.activiti.engine.impl.bpmn.helper.ClassDelegate.instantiateDelegate(ClassDelegate.java:192)
@@ -221,80 +221,80 @@ Caused by: java.lang.ClassNotFoundException: com.home.demo.listener.ProcessStart
 	at java.lang.Class.forName(Class.java:348)
 	at org.activiti.engine.impl.util.ReflectUtil.loadClass(ReflectUtil.java:63)
 	... 47 common frames omitted
-15:06:41.713 [main] DEBUG org.activiti.engine.impl.cfg.standalone.StandaloneMybatisTransactionContext - firing event rolling back...
-15:06:41.713 [main] DEBUG org.activiti.engine.impl.cfg.standalone.StandaloneMybatisTransactionContext - rolling back ibatis sql session...
-15:06:41.713 [main] DEBUG org.activiti.engine.impl.cfg.standalone.StandaloneMybatisTransactionContext - firing event rolled back...
-15:06:41.713 [main] DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Resetting autocommit to true on JDBC Connection [conn2: url=jdbc:h2:mem:activiti user=SA]
-15:06:41.714 [main] DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Closing JDBC Connection [conn2: url=jdbc:h2:mem:activiti user=SA]
-15:06:41.714 [main] DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource - Returned connection 1055601039 to pool.
-15:06:41.714 [main] DEBUG org.activiti.engine.impl.interceptor.LogInterceptor - --- StartProcessInstanceCmd finished --------------------------------------------------------
-15:06:41.714 [main] DEBUG org.activiti.engine.impl.interceptor.LogInterceptor - 
+16:46:13.160 [main] DEBUG org.activiti.engine.impl.cfg.standalone.StandaloneMybatisTransactionContext - firing event rolling back...
+16:46:13.160 [main] DEBUG org.activiti.engine.impl.cfg.standalone.StandaloneMybatisTransactionContext - rolling back ibatis sql session...
+16:46:13.160 [main] DEBUG org.activiti.engine.impl.cfg.standalone.StandaloneMybatisTransactionContext - firing event rolled back...
+16:46:13.160 [main] DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Resetting autocommit to true on JDBC Connection [conn2: url=jdbc:h2:mem:activiti user=SA]
+16:46:13.160 [main] DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Closing JDBC Connection [conn2: url=jdbc:h2:mem:activiti user=SA]
+16:46:13.160 [main] DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource - Returned connection 1974622245 to pool.
+16:46:13.160 [main] DEBUG org.activiti.engine.impl.interceptor.LogInterceptor - --- StartProcessInstanceCmd finished --------------------------------------------------------
+16:46:13.160 [main] DEBUG org.activiti.engine.impl.interceptor.LogInterceptor - 
 
-15:06:41.714 [main] DEBUG org.activiti.engine.impl.test.TestHelper - annotation @Deployment deletes deployment for ListenerTest.testListener
-15:06:41.714 [main] DEBUG org.activiti.engine.impl.interceptor.LogInterceptor - 
+16:46:13.160 [main] DEBUG org.activiti.engine.impl.test.TestHelper - annotation @Deployment deletes deployment for ListenerTest.testListener
+16:46:13.160 [main] DEBUG org.activiti.engine.impl.interceptor.LogInterceptor - 
 
-15:06:41.714 [main] DEBUG org.activiti.engine.impl.interceptor.LogInterceptor - --- starting DeleteDeploymentCmd --------------------------------------------------------
-15:06:41.714 [main] DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Opening JDBC Connection
-15:06:41.714 [main] DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource - Checked out connection 1055601039 from pool.
-15:06:41.714 [main] DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Setting autocommit to false on JDBC Connection [conn2: url=jdbc:h2:mem:activiti user=SA]
-15:06:41.714 [main] DEBUG org.activiti.engine.impl.persistence.entity.DeploymentEntity.selectDeploymentById - ==>  Preparing: select * from ACT_RE_DEPLOYMENT where ID_ = ? 
-15:06:41.715 [main] DEBUG org.activiti.engine.impl.persistence.entity.DeploymentEntity.selectDeploymentById - ==> Parameters: 28(String)
-15:06:41.715 [main] DEBUG org.activiti.engine.impl.persistence.entity.DeploymentEntity.selectDeploymentById - <==      Total: 1
-15:06:41.716 [main] DEBUG org.activiti.engine.impl.persistence.entity.ProcessDefinitionEntity.selectProcessDefinitionsByQueryCriteria - ==>  Preparing: select RES.* from ACT_RE_PROCDEF RES WHERE RES.DEPLOYMENT_ID_ = ? order by RES.ID_ asc LIMIT ? OFFSET ? 
-15:06:41.716 [main] DEBUG org.activiti.engine.impl.persistence.entity.ProcessDefinitionEntity.selectProcessDefinitionsByQueryCriteria - ==> Parameters: 28(String), 2147483647(Integer), 0(Integer)
-15:06:41.717 [main] DEBUG org.activiti.engine.impl.persistence.entity.ProcessDefinitionEntity.selectProcessDefinitionsByQueryCriteria - <==      Total: 1
-15:06:41.717 [main] DEBUG org.activiti.engine.impl.persistence.entity.ModelEntity.selectModelsByQueryCriteria - ==>  Preparing: select distinct RES.* from ACT_RE_MODEL RES WHERE RES.DEPLOYMENT_ID_ = ? order by RES.ID_ asc LIMIT ? OFFSET ? 
-15:06:41.718 [main] DEBUG org.activiti.engine.impl.persistence.entity.ModelEntity.selectModelsByQueryCriteria - ==> Parameters: 28(String), 2147483647(Integer), 0(Integer)
-15:06:41.718 [main] DEBUG org.activiti.engine.impl.persistence.entity.ModelEntity.selectModelsByQueryCriteria - <==      Total: 0
-15:06:41.720 [main] DEBUG org.activiti.engine.impl.persistence.entity.ExecutionEntity.selectProcessInstanceIdsByProcessDefinitionId - ==>  Preparing: select ID_ from ACT_RU_EXECUTION where PROC_DEF_ID_ = ? and PARENT_ID_ is null 
-15:06:41.721 [main] DEBUG org.activiti.engine.impl.persistence.entity.ExecutionEntity.selectProcessInstanceIdsByProcessDefinitionId - ==> Parameters: listener:1:31(String)
-15:06:41.721 [main] DEBUG org.activiti.engine.impl.persistence.entity.ExecutionEntity.selectProcessInstanceIdsByProcessDefinitionId - <==      Total: 0
-15:06:41.722 [main] DEBUG org.activiti.engine.impl.history.DefaultHistoryManager - Current history level: FULL
-15:06:41.722 [main] DEBUG org.activiti.engine.impl.persistence.entity.HistoricProcessInstanceEntity.selectHistoricProcessInstanceIdsByProcessDefinitionId - ==>  Preparing: select ID_ from ACT_HI_PROCINST where PROC_DEF_ID_ = ? 
-15:06:41.723 [main] DEBUG org.activiti.engine.impl.persistence.entity.HistoricProcessInstanceEntity.selectHistoricProcessInstanceIdsByProcessDefinitionId - ==> Parameters: listener:1:31(String)
-15:06:41.723 [main] DEBUG org.activiti.engine.impl.persistence.entity.HistoricProcessInstanceEntity.selectHistoricProcessInstanceIdsByProcessDefinitionId - <==      Total: 0
-15:06:41.723 [main] DEBUG org.activiti.engine.impl.persistence.entity.JobEntity.selectJobsByConfiguration - ==>  Preparing: select * from ACT_RU_JOB where HANDLER_TYPE_ = ? and HANDLER_CFG_ = ? 
-15:06:41.723 [main] DEBUG org.activiti.engine.impl.persistence.entity.JobEntity.selectJobsByConfiguration - ==> Parameters: timer-start-event(String), listener(String)
-15:06:41.725 [main] DEBUG org.activiti.engine.impl.persistence.entity.JobEntity.selectJobsByConfiguration - <==      Total: 0
-15:06:41.726 [main] DEBUG org.activiti.engine.impl.persistence.entity.EventSubscriptionEntity.selectEventSubscriptionsByConfiguration - ==>  Preparing: select * from ACT_RU_EVENT_SUBSCR where (EVENT_TYPE_ = ?) and ( (CONFIGURATION_ = ?) or (PROC_DEF_ID_ = ?) ) and (TENANT_ID_ = '' or TENANT_ID_ is null) 
-15:06:41.727 [main] DEBUG org.activiti.engine.impl.persistence.entity.EventSubscriptionEntity.selectEventSubscriptionsByConfiguration - ==> Parameters: message(String), listener:1:31(String), listener:1:31(String)
-15:06:41.727 [main] DEBUG org.activiti.engine.impl.persistence.entity.EventSubscriptionEntity.selectEventSubscriptionsByConfiguration - <==      Total: 0
-15:06:41.727 [main] DEBUG org.activiti.engine.impl.db.DbSqlSession - flush summary: 0 insert, 0 update, 5 delete.
-15:06:41.727 [main] DEBUG org.activiti.engine.impl.db.DbSqlSession -   bulk delete: deleteIdentityLinkByProcDef(listener:1:31)
-15:06:41.727 [main] DEBUG org.activiti.engine.impl.db.DbSqlSession -   bulk delete: deleteEventSubscriptionsForProcessDefinition(listener:1:31)
-15:06:41.727 [main] DEBUG org.activiti.engine.impl.db.DbSqlSession -   bulk delete: deleteProcessDefinitionsByDeploymentId(28)
-15:06:41.727 [main] DEBUG org.activiti.engine.impl.db.DbSqlSession -   bulk delete: deleteResourcesByDeploymentId(28)
-15:06:41.727 [main] DEBUG org.activiti.engine.impl.db.DbSqlSession -   bulk delete: deleteDeployment(28)
-15:06:41.727 [main] DEBUG org.activiti.engine.impl.db.DbSqlSession - now executing flush...
-15:06:41.728 [main] DEBUG org.activiti.engine.impl.db.DbSqlSession - executing: bulk delete: deleteIdentityLinkByProcDef(listener:1:31)
-15:06:41.728 [main] DEBUG org.activiti.engine.impl.persistence.entity.IdentityLinkEntity.deleteIdentityLinkByProcDef - ==>  Preparing: delete from ACT_RU_IDENTITYLINK where PROC_DEF_ID_ = ? 
-15:06:41.728 [main] DEBUG org.activiti.engine.impl.persistence.entity.IdentityLinkEntity.deleteIdentityLinkByProcDef - ==> Parameters: listener:1:31(String)
-15:06:41.728 [main] DEBUG org.activiti.engine.impl.persistence.entity.IdentityLinkEntity.deleteIdentityLinkByProcDef - <==    Updates: 0
-15:06:41.728 [main] DEBUG org.activiti.engine.impl.db.DbSqlSession - executing: bulk delete: deleteEventSubscriptionsForProcessDefinition(listener:1:31)
-15:06:41.728 [main] DEBUG org.activiti.engine.impl.persistence.entity.EventSubscriptionEntity.deleteEventSubscriptionsForProcessDefinition - ==>  Preparing: delete from ACT_RU_EVENT_SUBSCR where PROC_DEF_ID_ = ? 
-15:06:41.729 [main] DEBUG org.activiti.engine.impl.persistence.entity.EventSubscriptionEntity.deleteEventSubscriptionsForProcessDefinition - ==> Parameters: listener:1:31(String)
-15:06:41.729 [main] DEBUG org.activiti.engine.impl.persistence.entity.EventSubscriptionEntity.deleteEventSubscriptionsForProcessDefinition - <==    Updates: 0
-15:06:41.729 [main] DEBUG org.activiti.engine.impl.db.DbSqlSession - executing: bulk delete: deleteProcessDefinitionsByDeploymentId(28)
-15:06:41.729 [main] DEBUG org.activiti.engine.impl.persistence.entity.ProcessDefinitionEntity.deleteProcessDefinitionsByDeploymentId - ==>  Preparing: delete from ACT_RE_PROCDEF where DEPLOYMENT_ID_ = ? 
-15:06:41.729 [main] DEBUG org.activiti.engine.impl.persistence.entity.ProcessDefinitionEntity.deleteProcessDefinitionsByDeploymentId - ==> Parameters: 28(String)
-15:06:41.730 [main] DEBUG org.activiti.engine.impl.persistence.entity.ProcessDefinitionEntity.deleteProcessDefinitionsByDeploymentId - <==    Updates: 1
-15:06:41.730 [main] DEBUG org.activiti.engine.impl.db.DbSqlSession - executing: bulk delete: deleteResourcesByDeploymentId(28)
-15:06:41.730 [main] DEBUG org.activiti.engine.impl.persistence.entity.ResourceEntity.deleteResourcesByDeploymentId - ==>  Preparing: delete from ACT_GE_BYTEARRAY where DEPLOYMENT_ID_ = ? 
-15:06:41.730 [main] DEBUG org.activiti.engine.impl.persistence.entity.ResourceEntity.deleteResourcesByDeploymentId - ==> Parameters: 28(String)
-15:06:41.730 [main] DEBUG org.activiti.engine.impl.persistence.entity.ResourceEntity.deleteResourcesByDeploymentId - <==    Updates: 2
-15:06:41.730 [main] DEBUG org.activiti.engine.impl.db.DbSqlSession - executing: bulk delete: deleteDeployment(28)
-15:06:41.730 [main] DEBUG org.activiti.engine.impl.persistence.entity.DeploymentEntity.deleteDeployment - ==>  Preparing: delete from ACT_RE_DEPLOYMENT where ID_ = ? 
-15:06:41.730 [main] DEBUG org.activiti.engine.impl.persistence.entity.DeploymentEntity.deleteDeployment - ==> Parameters: 28(String)
-15:06:41.731 [main] DEBUG org.activiti.engine.impl.persistence.entity.DeploymentEntity.deleteDeployment - <==    Updates: 1
-15:06:41.731 [main] DEBUG org.activiti.engine.impl.cfg.standalone.StandaloneMybatisTransactionContext - firing event committing...
-15:06:41.731 [main] DEBUG org.activiti.engine.impl.cfg.standalone.StandaloneMybatisTransactionContext - committing the ibatis sql session...
-15:06:41.731 [main] DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Committing JDBC Connection [conn2: url=jdbc:h2:mem:activiti user=SA]
-15:06:41.731 [main] DEBUG org.activiti.engine.impl.cfg.standalone.StandaloneMybatisTransactionContext - firing event committed...
-15:06:41.731 [main] DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Resetting autocommit to true on JDBC Connection [conn2: url=jdbc:h2:mem:activiti user=SA]
-15:06:41.731 [main] DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Closing JDBC Connection [conn2: url=jdbc:h2:mem:activiti user=SA]
-15:06:41.731 [main] DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource - Returned connection 1055601039 to pool.
-15:06:41.731 [main] DEBUG org.activiti.engine.impl.interceptor.LogInterceptor - --- DeleteDeploymentCmd finished --------------------------------------------------------
-15:06:41.731 [main] DEBUG org.activiti.engine.impl.interceptor.LogInterceptor - 
+16:46:13.160 [main] DEBUG org.activiti.engine.impl.interceptor.LogInterceptor - --- starting DeleteDeploymentCmd --------------------------------------------------------
+16:46:13.160 [main] DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Opening JDBC Connection
+16:46:13.160 [main] DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource - Checked out connection 1974622245 from pool.
+16:46:13.160 [main] DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Setting autocommit to false on JDBC Connection [conn2: url=jdbc:h2:mem:activiti user=SA]
+16:46:13.161 [main] DEBUG org.activiti.engine.impl.persistence.entity.DeploymentEntity.selectDeploymentById - ==>  Preparing: select * from ACT_RE_DEPLOYMENT where ID_ = ? 
+16:46:13.161 [main] DEBUG org.activiti.engine.impl.persistence.entity.DeploymentEntity.selectDeploymentById - ==> Parameters: 28(String)
+16:46:13.162 [main] DEBUG org.activiti.engine.impl.persistence.entity.DeploymentEntity.selectDeploymentById - <==      Total: 1
+16:46:13.164 [main] DEBUG org.activiti.engine.impl.persistence.entity.ProcessDefinitionEntity.selectProcessDefinitionsByQueryCriteria - ==>  Preparing: select RES.* from ACT_RE_PROCDEF RES WHERE RES.DEPLOYMENT_ID_ = ? order by RES.ID_ asc LIMIT ? OFFSET ? 
+16:46:13.164 [main] DEBUG org.activiti.engine.impl.persistence.entity.ProcessDefinitionEntity.selectProcessDefinitionsByQueryCriteria - ==> Parameters: 28(String), 2147483647(Integer), 0(Integer)
+16:46:13.165 [main] DEBUG org.activiti.engine.impl.persistence.entity.ProcessDefinitionEntity.selectProcessDefinitionsByQueryCriteria - <==      Total: 1
+16:46:13.166 [main] DEBUG org.activiti.engine.impl.persistence.entity.ModelEntity.selectModelsByQueryCriteria - ==>  Preparing: select distinct RES.* from ACT_RE_MODEL RES WHERE RES.DEPLOYMENT_ID_ = ? order by RES.ID_ asc LIMIT ? OFFSET ? 
+16:46:13.173 [main] DEBUG org.activiti.engine.impl.persistence.entity.ModelEntity.selectModelsByQueryCriteria - ==> Parameters: 28(String), 2147483647(Integer), 0(Integer)
+16:46:13.173 [main] DEBUG org.activiti.engine.impl.persistence.entity.ModelEntity.selectModelsByQueryCriteria - <==      Total: 0
+16:46:13.174 [main] DEBUG org.activiti.engine.impl.persistence.entity.ExecutionEntity.selectProcessInstanceIdsByProcessDefinitionId - ==>  Preparing: select ID_ from ACT_RU_EXECUTION where PROC_DEF_ID_ = ? and PARENT_ID_ is null 
+16:46:13.174 [main] DEBUG org.activiti.engine.impl.persistence.entity.ExecutionEntity.selectProcessInstanceIdsByProcessDefinitionId - ==> Parameters: listener:1:31(String)
+16:46:13.174 [main] DEBUG org.activiti.engine.impl.persistence.entity.ExecutionEntity.selectProcessInstanceIdsByProcessDefinitionId - <==      Total: 0
+16:46:13.175 [main] DEBUG org.activiti.engine.impl.history.DefaultHistoryManager - Current history level: FULL
+16:46:13.175 [main] DEBUG org.activiti.engine.impl.persistence.entity.HistoricProcessInstanceEntity.selectHistoricProcessInstanceIdsByProcessDefinitionId - ==>  Preparing: select ID_ from ACT_HI_PROCINST where PROC_DEF_ID_ = ? 
+16:46:13.175 [main] DEBUG org.activiti.engine.impl.persistence.entity.HistoricProcessInstanceEntity.selectHistoricProcessInstanceIdsByProcessDefinitionId - ==> Parameters: listener:1:31(String)
+16:46:13.175 [main] DEBUG org.activiti.engine.impl.persistence.entity.HistoricProcessInstanceEntity.selectHistoricProcessInstanceIdsByProcessDefinitionId - <==      Total: 0
+16:46:13.176 [main] DEBUG org.activiti.engine.impl.persistence.entity.JobEntity.selectJobsByConfiguration - ==>  Preparing: select * from ACT_RU_JOB where HANDLER_TYPE_ = ? and HANDLER_CFG_ = ? 
+16:46:13.177 [main] DEBUG org.activiti.engine.impl.persistence.entity.JobEntity.selectJobsByConfiguration - ==> Parameters: timer-start-event(String), listener(String)
+16:46:13.177 [main] DEBUG org.activiti.engine.impl.persistence.entity.JobEntity.selectJobsByConfiguration - <==      Total: 0
+16:46:13.177 [main] DEBUG org.activiti.engine.impl.persistence.entity.EventSubscriptionEntity.selectEventSubscriptionsByConfiguration - ==>  Preparing: select * from ACT_RU_EVENT_SUBSCR where (EVENT_TYPE_ = ?) and ( (CONFIGURATION_ = ?) or (PROC_DEF_ID_ = ?) ) and (TENANT_ID_ = '' or TENANT_ID_ is null) 
+16:46:13.178 [main] DEBUG org.activiti.engine.impl.persistence.entity.EventSubscriptionEntity.selectEventSubscriptionsByConfiguration - ==> Parameters: message(String), listener:1:31(String), listener:1:31(String)
+16:46:13.178 [main] DEBUG org.activiti.engine.impl.persistence.entity.EventSubscriptionEntity.selectEventSubscriptionsByConfiguration - <==      Total: 0
+16:46:13.179 [main] DEBUG org.activiti.engine.impl.db.DbSqlSession - flush summary: 0 insert, 0 update, 5 delete.
+16:46:13.179 [main] DEBUG org.activiti.engine.impl.db.DbSqlSession -   bulk delete: deleteIdentityLinkByProcDef(listener:1:31)
+16:46:13.179 [main] DEBUG org.activiti.engine.impl.db.DbSqlSession -   bulk delete: deleteEventSubscriptionsForProcessDefinition(listener:1:31)
+16:46:13.179 [main] DEBUG org.activiti.engine.impl.db.DbSqlSession -   bulk delete: deleteProcessDefinitionsByDeploymentId(28)
+16:46:13.179 [main] DEBUG org.activiti.engine.impl.db.DbSqlSession -   bulk delete: deleteResourcesByDeploymentId(28)
+16:46:13.180 [main] DEBUG org.activiti.engine.impl.db.DbSqlSession -   bulk delete: deleteDeployment(28)
+16:46:13.180 [main] DEBUG org.activiti.engine.impl.db.DbSqlSession - now executing flush...
+16:46:13.180 [main] DEBUG org.activiti.engine.impl.db.DbSqlSession - executing: bulk delete: deleteIdentityLinkByProcDef(listener:1:31)
+16:46:13.180 [main] DEBUG org.activiti.engine.impl.persistence.entity.IdentityLinkEntity.deleteIdentityLinkByProcDef - ==>  Preparing: delete from ACT_RU_IDENTITYLINK where PROC_DEF_ID_ = ? 
+16:46:13.181 [main] DEBUG org.activiti.engine.impl.persistence.entity.IdentityLinkEntity.deleteIdentityLinkByProcDef - ==> Parameters: listener:1:31(String)
+16:46:13.181 [main] DEBUG org.activiti.engine.impl.persistence.entity.IdentityLinkEntity.deleteIdentityLinkByProcDef - <==    Updates: 0
+16:46:13.181 [main] DEBUG org.activiti.engine.impl.db.DbSqlSession - executing: bulk delete: deleteEventSubscriptionsForProcessDefinition(listener:1:31)
+16:46:13.181 [main] DEBUG org.activiti.engine.impl.persistence.entity.EventSubscriptionEntity.deleteEventSubscriptionsForProcessDefinition - ==>  Preparing: delete from ACT_RU_EVENT_SUBSCR where PROC_DEF_ID_ = ? 
+16:46:13.182 [main] DEBUG org.activiti.engine.impl.persistence.entity.EventSubscriptionEntity.deleteEventSubscriptionsForProcessDefinition - ==> Parameters: listener:1:31(String)
+16:46:13.182 [main] DEBUG org.activiti.engine.impl.persistence.entity.EventSubscriptionEntity.deleteEventSubscriptionsForProcessDefinition - <==    Updates: 0
+16:46:13.182 [main] DEBUG org.activiti.engine.impl.db.DbSqlSession - executing: bulk delete: deleteProcessDefinitionsByDeploymentId(28)
+16:46:13.182 [main] DEBUG org.activiti.engine.impl.persistence.entity.ProcessDefinitionEntity.deleteProcessDefinitionsByDeploymentId - ==>  Preparing: delete from ACT_RE_PROCDEF where DEPLOYMENT_ID_ = ? 
+16:46:13.182 [main] DEBUG org.activiti.engine.impl.persistence.entity.ProcessDefinitionEntity.deleteProcessDefinitionsByDeploymentId - ==> Parameters: 28(String)
+16:46:13.182 [main] DEBUG org.activiti.engine.impl.persistence.entity.ProcessDefinitionEntity.deleteProcessDefinitionsByDeploymentId - <==    Updates: 1
+16:46:13.182 [main] DEBUG org.activiti.engine.impl.db.DbSqlSession - executing: bulk delete: deleteResourcesByDeploymentId(28)
+16:46:13.183 [main] DEBUG org.activiti.engine.impl.persistence.entity.ResourceEntity.deleteResourcesByDeploymentId - ==>  Preparing: delete from ACT_GE_BYTEARRAY where DEPLOYMENT_ID_ = ? 
+16:46:13.183 [main] DEBUG org.activiti.engine.impl.persistence.entity.ResourceEntity.deleteResourcesByDeploymentId - ==> Parameters: 28(String)
+16:46:13.183 [main] DEBUG org.activiti.engine.impl.persistence.entity.ResourceEntity.deleteResourcesByDeploymentId - <==    Updates: 2
+16:46:13.183 [main] DEBUG org.activiti.engine.impl.db.DbSqlSession - executing: bulk delete: deleteDeployment(28)
+16:46:13.183 [main] DEBUG org.activiti.engine.impl.persistence.entity.DeploymentEntity.deleteDeployment - ==>  Preparing: delete from ACT_RE_DEPLOYMENT where ID_ = ? 
+16:46:13.183 [main] DEBUG org.activiti.engine.impl.persistence.entity.DeploymentEntity.deleteDeployment - ==> Parameters: 28(String)
+16:46:13.184 [main] DEBUG org.activiti.engine.impl.persistence.entity.DeploymentEntity.deleteDeployment - <==    Updates: 1
+16:46:13.184 [main] DEBUG org.activiti.engine.impl.cfg.standalone.StandaloneMybatisTransactionContext - firing event committing...
+16:46:13.184 [main] DEBUG org.activiti.engine.impl.cfg.standalone.StandaloneMybatisTransactionContext - committing the ibatis sql session...
+16:46:13.184 [main] DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Committing JDBC Connection [conn2: url=jdbc:h2:mem:activiti user=SA]
+16:46:13.184 [main] DEBUG org.activiti.engine.impl.cfg.standalone.StandaloneMybatisTransactionContext - firing event committed...
+16:46:13.184 [main] DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Resetting autocommit to true on JDBC Connection [conn2: url=jdbc:h2:mem:activiti user=SA]
+16:46:13.184 [main] DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Closing JDBC Connection [conn2: url=jdbc:h2:mem:activiti user=SA]
+16:46:13.184 [main] DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource - Returned connection 1974622245 to pool.
+16:46:13.184 [main] DEBUG org.activiti.engine.impl.interceptor.LogInterceptor - --- DeleteDeploymentCmd finished --------------------------------------------------------
+16:46:13.184 [main] DEBUG org.activiti.engine.impl.interceptor.LogInterceptor - 
 
 ]]></system-out>
   </testcase>

@@ -23,7 +23,9 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
-import org.springframework.jdbc.datasource.DataSourceTransactionManager;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
+import org.springframework.orm.hibernate4.HibernateTransactionManager;
 
 import com.home.demo.form.BigtextFormType;
 import com.home.demo.form.DoubleFormType;
@@ -39,15 +41,35 @@ public class ProcessEngineConfig {
 	
 	@Bean(name = "processEngineConfiguration")
 	@Primary
-	public ProcessEngineConfiguration processEngineConfiguration(@Qualifier("dataSource") DataSource dataSource,@Qualifier("transactionManager")DataSourceTransactionManager transactionManager) {
+	public ProcessEngineConfiguration processEngineConfiguration(@Qualifier("dataSource") DataSource dataSource,@Qualifier("transactionManager")HibernateTransactionManager transactionManager) {
 		SpringProcessEngineConfiguration processEngineConfiguration = new SpringProcessEngineConfiguration();
 		processEngineConfiguration.setProcessEngineName("spring");
 		processEngineConfiguration.setDataSource(dataSource);      
 		processEngineConfiguration.setTransactionManager(transactionManager);
 		processEngineConfiguration.setDatabaseSchemaUpdate(ProcessEngineConfiguration.DB_SCHEMA_UPDATE_TRUE);
-		processEngineConfiguration.setJobExecutorActivate(false);
+		processEngineConfiguration.setJobExecutorActivate(true);
+		
+		//自动部署配置	
+//		Resource[] resources = {
+//				new ClassPathResource("classpath*:/chapter8/leave-mail*.zip"),
+//				new ClassPathResource("classpath*:/chapter9/leave-countersign.zip"),
+//				new ClassPathResource("classpath*:/chapter10/purchase*.zip"),
+//				new ClassPathResource("classpath*:/chapter10/payment.zip")
+//		};
+		Resource[] resources = {
+				new ClassPathResource("/chapter8/leave-mail.zip"),
+				new ClassPathResource("/chapter8/leave-mail-timeout.zip"),
+				new ClassPathResource("/chapter9/leave-countersign.zip"),
+				new ClassPathResource("/chapter10/payment.zip"),
+				new ClassPathResource("/chapter10/purchase-callactivity.zip"),
+				new ClassPathResource("/chapter10/purchase-subprocess.zip")
+		};
+
+		processEngineConfiguration.setDeploymentResources(resources);
+		
 		processEngineConfiguration.setMailServerPort(2025);
 		processEngineConfiguration.setActivityFontName("宋体");
+		processEngineConfiguration.setLabelFontName("宋体");
 		
 		List<AbstractFormType> formType = new ArrayList<AbstractFormType>();
 		formType.add(new JavascriptFormType());
@@ -69,40 +91,31 @@ public class ProcessEngineConfig {
 //		processEngineConfiguration.setCustomMybatisMappers(customMybatisMappers);
 		
 		
-		/*	自动部署配置	
-		 * <property name="deploymentResources">
-				<list>
-					<value>classpath*:/chapter8/leave-mail*.zip</value>
-					<value>classpath*:/chapter9/leave-countersign.zip</value>
-					<value>classpath*:/chapter10/purchase*.zip</value>
-					<value>classpath*:/chapter10/payment.zip</value>
-				</list>
-			</property>
-		processEngineConfiguration.setDeploymentResources();*/
+
 		
 		return processEngineConfiguration;
 	}
 	
 	
 	
-	@Bean(name = "processEngine")
+	@Bean(name = "processEngineFactory")
 	@Primary
-	public ProcessEngineFactoryBean processEngine(
+	public ProcessEngineFactoryBean processEngineFactory(
 			@Qualifier("processEngineConfiguration") ProcessEngineConfiguration processEngineConfiguration)
 			throws Exception {
-		ProcessEngineFactoryBean processEngine = new ProcessEngineFactoryBean();
-		processEngine.setProcessEngineConfiguration((ProcessEngineConfigurationImpl) processEngineConfiguration);
-		return processEngine;
+		ProcessEngineFactoryBean processEngineFactory = new ProcessEngineFactoryBean();
+		processEngineFactory.setProcessEngineConfiguration((ProcessEngineConfigurationImpl) processEngineConfiguration);
+		return processEngineFactory;
 	}
 
-//	@Bean(name = "processEngine")
-//	@Primary
-//	public ProcessEngine processEngine(
-//			@Qualifier("processEngineConfiguration") ProcessEngineConfiguration processEngineConfiguration)
-//			throws Exception {
-//		ProcessEngine processEngine = processEngineConfiguration.buildProcessEngine();
-//		return processEngine;
-//	}
+	@Bean(name = "processEngine")
+	@Primary
+	public ProcessEngine processEngine(
+			@Qualifier("processEngineFactory") ProcessEngineFactoryBean processEngineFactory)
+			throws Exception {
+		ProcessEngine processEngine = processEngineFactory.getObject();
+		return processEngine;
+	}
 	
 	@Bean(name = "repositoryService")
 	@Primary

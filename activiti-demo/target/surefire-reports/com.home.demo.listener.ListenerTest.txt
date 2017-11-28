@@ -1,8 +1,8 @@
 -------------------------------------------------------------------------------
 Test set: com.home.demo.listener.ListenerTest
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.172 sec <<< FAILURE! - in com.home.demo.listener.ListenerTest
-testListener(com.home.demo.listener.ListenerTest)  Time elapsed: 0.172 sec  <<< ERROR!
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.144 sec <<< FAILURE! - in com.home.demo.listener.ListenerTest
+testListener(com.home.demo.listener.ListenerTest)  Time elapsed: 0.143 sec  <<< ERROR!
 org.activiti.engine.ActivitiException: couldn't instantiate class com.home.demo.listener.ProcessStartExecutionListener
 	at java.net.URLClassLoader.findClass(URLClassLoader.java:381)
 	at java.lang.ClassLoader.loadClass(ClassLoader.java:424)

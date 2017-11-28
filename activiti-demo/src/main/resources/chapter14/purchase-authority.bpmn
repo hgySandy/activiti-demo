@@ -302,7 +302,7 @@
         <omgdi:waypoint x="355.0" y="135.0"></omgdi:waypoint>
         <omgdi:waypoint x="312.0" y="135.0"></omgdi:waypoint>
         <bpmndi:BPMNLabel>
-          <omgdc:Bounds height="48.0" width="100.0" x="361.0" y="135.0"></omgdc:Bounds>
+          <omgdc:Bounds height="48.0" width="100.0" x="361.0" y="136.0"></omgdc:Bounds>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="flow22" id="BPMNEdge_flow22">

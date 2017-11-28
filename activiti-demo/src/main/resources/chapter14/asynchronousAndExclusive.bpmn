@@ -9,11 +9,11 @@
     </startEvent>
     <sequenceFlow id="flow1" sourceRef="startevent1" targetRef="parallelgateway1"></sequenceFlow>
     <parallelGateway id="parallelgateway1" name="Exclusive Gateway"></parallelGateway>
-    <serviceTask id="servicetask1" name="任务One" activiti:async="true" activiti:class="me.kafeitu.activiti.chapter14.AsynchronousExecutor"></serviceTask>
+    <serviceTask id="servicetask1" name="任务One" activiti:async="true" activiti:class="com.home.demo.delegate.AsynchronousExecutor"></serviceTask>
     <sequenceFlow id="flow2" sourceRef="parallelgateway1" targetRef="servicetask1"></sequenceFlow>
-    <serviceTask id="servicetask2" name="任务Two" activiti:async="true" activiti:class="me.kafeitu.activiti.chapter14.AsynchronousExecutor"></serviceTask>
+    <serviceTask id="servicetask2" name="任务Two" activiti:async="true" activiti:class="com.home.demo.delegate.AsynchronousExecutor"></serviceTask>
     <sequenceFlow id="flow3" sourceRef="parallelgateway1" targetRef="servicetask2"></sequenceFlow>
-    <serviceTask id="servicetask3" name="任务Three" activiti:async="true" activiti:class="me.kafeitu.activiti.chapter14.AsynchronousExecutor"></serviceTask>
+    <serviceTask id="servicetask3" name="任务Three" activiti:async="true" activiti:class="com.home.demo.delegate.AsynchronousExecutor"></serviceTask>
     <sequenceFlow id="flow4" sourceRef="parallelgateway1" targetRef="servicetask3"></sequenceFlow>
     <sequenceFlow id="flow5" sourceRef="servicetask1" targetRef="parallelgateway2"></sequenceFlow>
     <parallelGateway id="parallelgateway2" name="Exclusive Gateway"></parallelGateway>

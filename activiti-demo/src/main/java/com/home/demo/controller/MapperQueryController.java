@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.home.demo.util.TaskQueryMapper;
+import com.home.demo.mapper.TaskQueryMapper;
 
 /**
  * 使用MyBatis语法查询数据

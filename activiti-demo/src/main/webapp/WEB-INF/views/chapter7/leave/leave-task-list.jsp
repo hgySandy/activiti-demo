@@ -19,7 +19,8 @@
 		}, 5000);
 		</script>
 	</c:if>
-	<table width="100%" class="table table-bordered table-hover table-condensed" style="margin-top: 5em;">
+    <div class='page-title ui-corner-all'>请假流程待办任务</div>
+	<table width="100%" class="table table-bordered table-hover table-condensed">
 		<thead>
 			<tr>
 				<th>申请人</th>
